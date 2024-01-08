@@ -8,3 +8,8 @@ Inserting new artisan command:
 
 Listing available artisan commands:
 - php artisan list
+
+Making scaffold with front-end bootstrap and auth
+- php artisan ui bootstrap --auth
+Install (npm install) and run bundle (npm run dev) -> based on the config above (bootstrap)
+- npm install && npm run dev
