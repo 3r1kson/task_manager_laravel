@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TarefaController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth'); // only access when logged in
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,25 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        //
+        // Using Method auth()
+        // if(auth()->check()) {
+        //     $id = auth()->user()->id;
+        //     $nome = auth()->user()->name;
+        //     $email = auth()->user()->email;
+        //     return "Logado ID: $id, Nome: $nome, Email: $email";
+        // } else {
+        //     return "Nao logado";
+        // }
+
+        // Second Method using Auth from Facades
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+            $nome = Auth::user()->name;
+            $email = Auth::user()->email;
+            return "Logado ID: $id, Nome: $nome, Email: $email";
+        } else {
+            return "Nao logado";
+        }
     }
 
     /**
