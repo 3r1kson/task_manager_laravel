@@ -14,3 +14,14 @@ Making scaffold with front-end bootstrap and auth
 
 Install (npm install) and run bundle (npm run dev) -> based on the config above (bootstrap)
 - npm install && npm run dev
+
+Creating a mail sender logic with markdown in the view emails.mensagem-teste
+- php artisan make:mail MensagemTesteMail --markdown emails.mensagem-teste
+
+Sending test email using Tinker:
+- php artisan tinker
+- use App\Mail\MensagemTesteMail;
+- Mail::to('email@email.com')->send(new MensagemTesteMail());
+
+Publishing and customizing email template:
+- php artisan vendor:publish - select "laravel-mail"
