@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tarefa;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use App\Mail\NovaTarefaMail;
+use App\Models\Tarefa;
 use Illuminate\Support\Facades\Auth;
 
 class TarefaController extends Controller
 {
-    public function __construct() {
+    public function __construct(Tarefa $tarefa) {
         $this->middleware('auth'); // only access when logged in
     }
     /**
@@ -59,7 +61,14 @@ class TarefaController extends Controller
     {
         // dd($request->all());
         // return view('tarefa.store');
-        $tarefa = Tarefa::create($request->all());
+
+        $dados = $request->all();
+        $dados['user_id'] = auth()->user()->id;
+
+        $tarefa = Tarefa::create($dados);
+        $destinatario = auth()->user()->email; //email from logged user. 
+        Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
+
         return redirect()->route('tarefas.show', ['tarefa' => $tarefa->id]);
     }
 
@@ -71,7 +80,7 @@ class TarefaController extends Controller
      */
     public function show(Tarefa $tarefa)
     {
-        dd($tarefa);
+        return view('tarefa.show', ['tarefa' => $tarefa]);
     }
 
     /**
