@@ -26,6 +26,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::resource('tarefas', 'App\Http\Controllers\TarefaController')->middleware('auth'); //another option of auth validation
 Route::resource('tarefas', 'App\Http\Controllers\TarefaController');
 
+// Specific routing for tarefa.store as test in case of routing not founding the resources route.
+Route::post('/tarefa.store', 'App\Http\Controllers\TarefaController@store')->name('tarefa.store');
+
 Route::get('/mensagem-teste', function () {
     return new MensagemTesteMail();
     // Mail::to('tiassessoreri@gmail.com')->send(new MensagemTesteMail());
