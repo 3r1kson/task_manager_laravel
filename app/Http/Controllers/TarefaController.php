@@ -20,6 +20,9 @@ class TarefaController extends Controller
      */
     public function index()
     {
+        $user_id = auth()->user()->id;
+        $tarefas = Tarefa::where('user_id', $user_id)->get();
+        return view('tarefa.index', ['tarefas' => $tarefas]);
         // Using Method auth()
         // if(auth()->check()) {
         //     $id = auth()->user()->id;
@@ -31,14 +34,14 @@ class TarefaController extends Controller
         // }
 
         // Second Method using Auth from Facades
-        if (Auth::check()) {
-            $id = Auth::user()->id;
-            $nome = Auth::user()->name;
-            $email = Auth::user()->email;
-            return "Logado ID: $id, Nome: $nome, Email: $email";
-        } else {
-            return "Nao logado";
-        }
+        // if (Auth::check()) {
+        //     $id = Auth::user()->id;
+        //     $nome = Auth::user()->name;
+        //     $email = Auth::user()->email;
+        //     return "Logado ID: $id, Nome: $nome, Email: $email";
+        // } else {
+        //     return "Nao logado";
+        // }
     }
 
     /**
