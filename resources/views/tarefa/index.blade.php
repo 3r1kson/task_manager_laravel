@@ -24,9 +24,19 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="card-body">
 
-                    </div>
+                    <nav>
+                        <ul class="pagination">
+                          <li class="page-item"><a class="page-link" href="{{ $tarefas->previousPageUrl() }}"">Voltar</a></li>
+                            @for ($i = 1; $i <= $tarefas->lastPage(); $i++)
+                                <li class="page-item {{ $tarefas->currentPage() == $i ? 'active' : '' }} ">
+                                    <a class="page-link" href="{{ $tarefas->url($i) }}">{{ $i }}</a>
+                                </li>
+                            @endfor 
+                          <li class="page-item"><a class="page-link" href="{{ $tarefas->nextPageUrl() }}">Proximo</a></li>
+                        </ul>
+                      </nav>
+                    {{-- {{ $tarefas->links() }} --}}
                 </div>
             </div>
         </div>
