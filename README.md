@@ -25,3 +25,6 @@ Sending test email using Tinker:
 
 Publishing and customizing email template:
 - php artisan vendor:publish - select "laravel-mail"
+
+Installation of composer packages (laravel excel):
+- composer require maatwebsite/excel=number_version - if there is an error insert --ignore-platform-reqs
