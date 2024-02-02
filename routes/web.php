@@ -1,9 +1,7 @@
 <?php
 
-use App\Mail\MensagemTesteMail;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
+use App\Mail\MensagemTesteMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,17 +18,19 @@ Route::get('/', function () {
     return view('bem-vindo');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::resource('tarefas', 'App\Http\Controllers\TarefaController')->middleware('auth'); //another option of auth validation
-Route::resource('tarefas', 'App\Http\Controllers\TarefaController');
+/*
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+    ->name('home')
+    ->middleware('verified');
+*/
 
-// Specific routing for tarefa.store as test in case of routing not founding the resources route.
-Route::post('/tarefa.store', 'App\Http\Controllers\TarefaController@store')->name('tarefa.store');
+Route::resource('tarefa', 'App\Http\Controllers\TarefaController')
+    ->middleware('verified');
 
-Route::get('/mensagem-teste', function () {
+Route::get('/mensagem-teste', function() {
     return new MensagemTesteMail();
-    // Mail::to('tiassessoreri@gmail.com')->send(new MensagemTesteMail());
-    // return 'E-mail sent!';
+    //Mail::to('atendimento@jorgesantana.net.br')->send(new MensagemTesteMail());
+    //return 'E-mail enviado com sucesso!';
 });

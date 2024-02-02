@@ -6,7 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Lang;
 
 class RedefinirSenhaNotification extends Notification
 {
@@ -47,15 +46,17 @@ class RedefinirSenhaNotification extends Notification
     {
         $url = 'http://localhost:8000/password/reset/'.$this->token.'?email='.$this->email;
         $minutos = config('auth.passwords.'.config('auth.defaults.passwords').'.expire');
+        $saudacao = 'Olá '.$this->name;
+        
         return (new MailMessage)
-        ->subject(Lang::get('Reset Password Notification'))
-        ->greeting('Ola '.$this->name)
-        ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))
-        ->action(Lang::get('Reset Password'), $url)
-        ->line(Lang::get('This password reset link will expire in :count minutes.', ['count' => $minutos]))
-        ->line(Lang::get('If you did not request a password reset, no further action is required.'))
-        ->salutation('Cya later alligator');
-    }
+            ->subject('Atualização de senha')
+            ->greeting($saudacao)
+            ->line('Esqueceu a senha? Sem problemas, vamos resolver isso!!!')
+            ->action('Clique aqui para modificar a senha', $url)
+            ->line('O link acima expira em '.$minutos.' minutos')
+            ->line('Caso você não tenha requisitado a alteração de senha, então nenhuma ação é necessária.')
+            ->salutation('Até breve!');
+        }
 
     /**
      * Get the array representation of the notification.

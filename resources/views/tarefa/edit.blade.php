@@ -8,7 +8,7 @@
                 <div class="card-header">Atualizar tarefa</div>
 
                 <div class="card-body">
-                    <form method="post" action="{{ route('tarefas.update', ['tarefa' => $tarefa->id]) }}">
+                    <form method="post" action="{{ route('tarefa.update', ['tarefa' => $tarefa->id]) }}">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">

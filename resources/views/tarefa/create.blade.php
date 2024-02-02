@@ -8,7 +8,7 @@
                 <div class="card-header">Adicionar tarefa</div>
 
                 <div class="card-body">
-                    <form method="post" action="{{ route('tarefas.store') }}">
+                    <form method="post" action="{{ route('tarefa.store') }}">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Tarefa</label>
