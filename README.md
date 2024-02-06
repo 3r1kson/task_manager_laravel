@@ -30,4 +30,4 @@ Installation of composer packages (laravel excel):
 - composer require maatwebsite/excel=number_version - if there is an error insert --ignore-platform-reqs
 
 Error with ZipStream for PHP 7.4 and Laravel Excel:
-- composer require maennchen/zipstream-php:^2.1
+- composer require maennchen/zipstream-php:^2.1 --ignore-platform-reqs
