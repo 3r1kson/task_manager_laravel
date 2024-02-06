@@ -31,3 +31,6 @@ Installation of composer packages (laravel excel):
 
 Error with ZipStream for PHP 7.4 and Laravel Excel:
 - composer require maennchen/zipstream-php:^2.1 --ignore-platform-reqs
+
+There are better tools for pdf, but if necessary is possible to use with Laravel excel:
+- composer require mpdf/mpdf=^8.0.10 --ignore-platform-reqs
