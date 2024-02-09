@@ -34,3 +34,6 @@ Error with ZipStream for PHP 7.4 and Laravel Excel:
 
 There are better tools for pdf, but if necessary is possible to use with Laravel excel:
 - composer require mpdf/mpdf=^8.0.10 --ignore-platform-reqs
+
+Installing DOMPDF:
+- composer require barryvdh/laravel-dompdf --ignore-platform-reqs
